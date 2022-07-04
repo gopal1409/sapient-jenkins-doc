@@ -13,4 +13,11 @@ root@jenkins:~# history
    sudo apt-get update
    11  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
    12  docker --version
+   ##########how to install jenkins
+   14  curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+   15  echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
+   16  sudo apt-get update
+   17  sudo apt-get install jenkins
+   18  systemctl status jenkins
+
 
