@@ -1,0 +1,6 @@
+###prerequsit for jenkins####
+root@jenkins:~# history
+    1  apt-get update
+    2  apt install default-jdk
+
+    4  apt install maven
