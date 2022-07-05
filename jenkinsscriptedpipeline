@@ -11,5 +11,10 @@ pipeline {
             git credentialsId: 'gitlab-token', url: 'https://github.com/gopal1409/springchat1.git'
             }
         }
+        stage('mvn build') {
+            steps {
+            sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+        }
     }
 }
