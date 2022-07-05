@@ -7,7 +7,9 @@ pipeline {
     }
     stages {
         stage('pull from scm') {
+            steps {
             git credentialsId: 'gitlab-token', url: 'https://github.com/gopal1409/springchat1.git'
+            }
         }
     }
 }
