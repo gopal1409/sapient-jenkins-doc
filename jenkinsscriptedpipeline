@@ -43,5 +43,24 @@ pipeline {
            sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=chatapp -Dsonar.host.url=http://20.84.106.226:9000 -Dsonar.login=sqp_01fbbdbe2afe58b1e7fcbb623f52798f5c8dacf1'
             }
         }
+        stage ('Nexus upload')  {
+          steps {
+          nexusArtifactUploader(
+          nexusVersion: 'nexus3',
+          protocol: 'http',
+          nexusUrl: '20.106.226.83:8081',
+          groupId: 'websocket-demo',
+          version: '0.0.1-SNAPSHOT',
+          repository: 'maven-snapshots',
+          credentialsId: 'nexus-cred',
+          artifacts: [
+            [artifactId: 'websocket-demo',
+             classifier: '',
+             file: 'target/websocket-demo-0.0.1-SNAPSHOT.jar',
+             type: 'jar']
+        ]
+        )
+          }
+     }
     }
 }
