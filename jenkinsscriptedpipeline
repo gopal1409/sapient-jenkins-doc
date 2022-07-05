@@ -33,5 +33,10 @@ pipeline {
                 recordIssues(tools: [checkStyle(pattern: 'target/checkstyle-result.xml')])
             }
         }
+        stage('code coverage') {
+            steps {
+                jacoco()
+            }
+        }
     }
 }
