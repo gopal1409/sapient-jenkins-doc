@@ -1,0 +1,10 @@
+32  docker volume create sonarqube-conf
+   33  docker volume create sonarqube-data
+   34  docker volume create sonarqube-logs
+   35  docker volume create sonarqube-extensions
+   36  mkdir /sonarqube
+   37  ln -s /var/lib/docker/volumes/sonarqube-conf/_data /sonarqube/conf
+   38  ln -s /var/lib/docker/volumes/sonarqube-data/_data /sonarqube/data
+   39  ln -s /var/lib/docker/volumes/sonarqube-logs/_data /sonarqube/logs
+   40  ln -s /var/lib/docker/volumes/sonarqube-extensions/_data /sonarqube/extensions
+   41  docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 -v sonarqube-conf:/opt/sonarqube/conf -v sonarqube-data:/opt/sonarqube/data -v sonarqube-logs:/opt/sonarqube/logs -v sonarqube-extensions:/opt/sonarqube/extensions sonarqube
