@@ -2,6 +2,7 @@ pipeline {
     environment {
         registry = "20.106.226.83:8085/chatapp"
         registryCredential = 'nexushub'
+        dockerImage = ''
     }
     agent any 
     // agent is where my pipeline will be eexecuted
@@ -24,6 +25,15 @@ pipeline {
             steps {
                 script {
                   docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('docker push') {
+            steps {
+                script {
+                  docker.withRegistry('http://20.106.226.83:8085',registryCredential) {
+                      dockerImage.push()
+                  }
                 }
             }
         }
