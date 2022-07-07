@@ -1,0 +1,9 @@
+  276  mkdir sec_files && cd sec_files
+  277  echo "username=sidd-harth" > file1
+  278  echo "secure-password123" > password.txt
+  279  echo "apikey=AizaSyCqhjgrPtr_La56sdUkjfav_laCqhjgrPtr_2s" > file2
+  280  echo "base64encodedsecret=cGFzc3dvcmQtaXMtcXdlcnR5MTIzCg==" > file3
+  281  curl https://thoughtworks.github.io/talisman/install.sh > ~/install-talisman.sh
+  282  chmod +x ~/install-talisman.sh
+  283  ~/install-talisman.sh
+
