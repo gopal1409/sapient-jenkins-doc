@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('scm checkouto') {
+            steps {
+                git 'https://github.com/gopal1409/sapient-terraform-lb-module.git'
+            }
+        }
+    stage ('Terraform init') {
+        steps {
+            sh "terraform init"
+        }
+    }
+    stage ('Terraform plan') {
+        steps {
+           script {
+                       withCredentials([azureServicePrincipal('azure')]) {
+                        sh """
+                        echo "terraform plan"
+                        
+                  az login --service-principal -u "$AZURE_CLIENT_ID" -p "$AZURE_CLIENT_SECRET" --tenant "$AZURE_TENANT_ID"
+                        az account set -s $AZURE_SUBSCRIPTION_ID
+                        terraform plan 
+                        """
+                       }
+                 }
+        }
+    }
+  }
+}
